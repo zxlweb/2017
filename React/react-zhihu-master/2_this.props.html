@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="build/browser.min.js"></script>
+    <title></title>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/babel">
+
+    var Divider=React.createClass({
+        render:function(){
+         console.log(this);
+            return (
+                    <div className="divider">
+                        <h2>{this.props.children}</h2>
+                    </div>
+            )
+        }
+    });
+    ReactDOM.render(
+        <Divider>Hello world <p>hello world <span>hello world</span></p></Divider>,
+        document.getElementById('example')
+    );
+
+</script>
+
+</body>
+</html>

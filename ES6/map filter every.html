@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+</head>
+<body>
+<div id="demo"></div>
+<script type="text/javascript">
+    var arr=[1,2,3];
+    var map_arr=[];
+  /*  map_arr=arr.map((i,index)=>{
+        console.log(index) ;
+        return i+=2});*/
+    /*
+    *filter()：检查指定数组符合某种条件，过滤符合条件的元素，生成新的数组
+    * 注意：1）不会改变原数组，返回新的数组
+    * */
+    map_arr=arr.filter((i,index)=>{
+        console.log(index) ;
+        return i>=2});
+    console.log(arr,map_arr);
+    document.getElementById('demo').innerHTML=map_arr;
+</script>
+</body>
+</html>

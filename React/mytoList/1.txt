@@ -1,0 +1,39 @@
+1.配置package.json
+2.npm install 安装项目需要的所有的依赖包
+3.技术栈：webpack+react+es6
+4.Flex:布局
+5.React-Router路由
+6.Redux：view层
+7.Mocha：测试
+8.Istanbul：覆盖率
+
+
+最强：
+1、组件
+2、状态
+============================================
+定义一个组件：
+  class name extends React.Componet{
+    render(){
+    return <span>111</span>
+    }
+  }
+使用一个组件：
+ 就和标签一样用
+ ReactDemo.render(<comp/>,odiv)
+
+
+ webpack：
+    1、webpack-dev-server:一个node.js服务器，让项目跑在一个类似于express这种服务器上
+    2、webpack-dev-server：生成的文件都是放在内存中的，页面中index.html引用的bundle.js一定要引用正确的bundle.js
+    3、package.json:
+     "scripts":{
+        "build": "webpack",
+        "dev": "webpack-dev-server --inline --hot --devtool eval --progress --colors "
+      },
+     4.webpack.config.js:
+     entry:['webpack/hot/dev-server',path.resolve(__dirname, './src/entry.js')],
+
+
+
+

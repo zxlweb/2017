@@ -1,0 +1,102 @@
+1.createClass():创建个组件类，调用的时直接将他视为一个标签，如果在调用过程中给他些属性，可以通过this.props.[属名]获取
+注意：组件的首字母必须大
+2.this.props.children:React 使用this.props.children来获取组件的子节;如果组件类的实例没有子节点，那么this.props.children为undefined
+如果有一个子节点，改值为object对象，如果有2个以及以上，则返回的是一个数组，React使用,React.Chilren.map()方法来屏蔽这种问
+
+单行注释：{}
+多行注释：{}
+生命周期
+JSX：可以是html标签直接写在js代码中，不需要任何引
+有的组件都必须有render()方法用于输出组件，组件必须首字母大写
+props和state的区
+/*
+* 获取DOM元素：React允许我们通过ref来定位一个组件，先给这个组件设置个ref=‘xxx’的属，注意这个ref必须时全唯一的
+* 然后就是通过this.ref.city来访问这个组
+* 只有在render方法执行之后，并且react已经完成了DOM的更新，才能通过 this.refs.city.getDOMNode() 来拿到原生的DOM元素
+* 如果你在react更新DOM之前这么做，很有可能拿到的是空的或是旧的DOM元素
+*/
+
+
+理解react：在react中只对dom进行更新不需要读
+二：JSX：一种在react组件内创建类xml的语
+例如创建个类名为question的组件有两种方式
+//v0.11
+React.DOM.h1({className,'question},'Questions'
+//v0.12
+React.createElement('h1',{className:'question'},'Questions')
+如果使用jsx语法上述就会变为
+<h1 className="question">Questions</h1>
+子节点：react将开始标签和结标签之间有的子节点保存在个this.props.children的属性中
+JSX与HTML的区别：
+非DOM属：
+key
+ref:是的父组件在render()方法之外对子组件的一个引
+dangerouslySetInnerHTML：设置原始的HTML
+特殊属：
+1）给表单元素添加for属：htmlFor  <lable htmlFor='cd'></label>
+    2）渲染一个自定义的class要用className  <div className="myclass"></div>
+    样式：自定义个样式只要将驼峰命名的属性和期望的属性拼成一个对
+    var styles={
+    borderColor:'#999',
+    borderThickness:'1px'
+    };
+    React.renderComponent(<div style={style}>...</div>,node)
+    没有JSX的react
+    1）定义组件类
+    2）创建一个为组件类生产实例的工厂
+   3）使用工厂来创建ReactElement实例
+
+    创建react
+    React.DOM.*在改命名空间下有很多预设工厂用来创建相应的react元素；这些工厂都是React.createElement()的简写，只是帮你预设了第个参
+    React.DOM.div()=React.createElement('div');
+    三：组件的生命周
+    实例化：
+    getInitialState:在组件挂载之前调用一次，返回值将会作为this.state的初始
+    getDefaultProps:
+
+    setState():在组件被挂载到DOM中之后可以改变state的状
+    注意：（1）React中不能直接修改state，必须使用setState()方法
+   2）The only place where you can assign this.state is the constructor.
+    componentDidMount:
+    如果使用的react-dom.js,想要访问真实的DOM，需要使用ReactDOM.findDOMNode(this)，不是this.getDOMNode(),已经启用（deprecated;
+    四：数据
+    在react中数据的流向是单向的，从父节点传递到子节点；React组件本身很简单，可以将它看做个函数，传入state和props作为参数，返回一个虚拟的DOM表现
+    state
+    设置state：this.setState(),每次执行，render()方法就会执行
+    props
+    设置props:
+    1）只能在挂在组件
+    2）组件树之外，很少使
+    3）过jsx的展语法把props设置成对
+    注意：1)不能过this.setProps()或this.props，在组件内部，props是只读的，只能访问不能修改；
+          2)反模式：把计算后的值赋值给state ？？？？？？
+
+    例如
+    var props={
+    value:'value',
+    two:bar
+    }
+    <TodoItem text={todo.text} isDone={todo.isDone} index={index} {....props}/>
+    五：事件处理
+
+
+
+
+    React提供的高级API：
+    1.React.Children.map(children, function[(thisArg)]):具有返回值
+    this.props.children 这个数据结构是opaque（不透明的）
+    this.props.children 的值有三种可能：
+    (1)如果当前组件没有子节点，它就是 undefined ;
+    (2)如果有一个子节点，数据类型是 object ;
+    (3)如果有多个子节点，数据类型就是 array;
+    2. React.Children.forEach(children, function[(thisArg)]):和map一样只是不返回任何数据；
+    3.React.Children.count(children):返回子组件的个数
+    4.React.Children.only(childre[0]):返回第一个组件；[1]：返回第二个组件
+    5.React.Children.toArray():
+
+    React.cloneElement(ReactElement element[,Object Props,children ...]),element作为入口，克隆一个新的react元素，拥有原始元素所有的props和key,ref属性，同时具备新的props；
+    新的子组件会替代原有的子组件
+
+
+
+    
