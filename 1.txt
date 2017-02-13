@@ -1,1 +1,12 @@
-hhhghg
+1.学习使用git:
+  （1）创建本地仓库：
+ 	a.新建一个普通的文件夹
+ 	b.在此文件下，git-Bash-here,然后执行git init 指令，目的是将这个目录变成Git可以管理的仓库：
+  （2）添加文件到git仓库
+  	a.git add <file> ,反复添加一个文件，也可以使用 git add . 添加所有文件
+  	b.使用git commit -m 'commit message' 完成
+  （3）将本地仓库和github一个已经存在的仓库建立联系：
+  	a.在本地仓库执行一下命令：
+  		git remote add origin git@github.com:michaelliao/learngit.git
+  	b.把本地库所有的内容推送到远程库上
+  		git push -u origin master(如果是第一次提交，必须加上-u ,此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改）
