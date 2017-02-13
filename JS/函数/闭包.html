@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	function constfunc(){
+		var  funcs=[];
+		var self=this;
+		for(var i=0;i<10;i++) funcs[i]=function(){ console.log(self);return i;};
+		return funcs;             
+
+	}
+	var funcs=constfunc();
+	console.log(funcs[5](),funcs[4]());
+
+</script>
+
+</body>
+</html>

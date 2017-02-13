@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<!-- 
+	*JSON:一种复杂的数据类型（对象），不是一门新的语言
+	*两个方法：JSON.stringify()和parse()，两者互为逆操作
+	*JSON.stringify():将javascript对象转化为json字符串
+	*JSON.parse():将json字符串解析为原生JavaScript对象
+ -->
+	<script type="text/javascript">
+		var book={
+			title:"Professional Javascript",
+			authors:["Nicholear"],
+			edition:3,
+			year:2011
+		}
+		var jsonText=JSON.stringify(book);
+		var parseBook=JSON.parse(jsonText);
+	
+		console.log(jsonText);
+		// {"title":"ProfessionalJavascript","authors":["Nicholear"],"edition":3,"year":2011}
+		console.log(parseBook);
+		//
+	</script>
+</body>
+</html>
