@@ -11,4 +11,5 @@
   	b.把本地库所有的内容推送到远程库上
   		git push -u origin master(如果是第一次提交，必须加上-u ,此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改）
   （4） 如何提交修改的文件：
+      查看修改：git diff HEAD --<file>
   		git add(是很有必要的)->git commit ->git push
