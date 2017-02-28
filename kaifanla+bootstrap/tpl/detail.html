@@ -1,0 +1,9 @@
+<div class="detail container">
+  <h2>菜品详情页</h2>
+  <hr/>
+  {{dish}}
+  <hr/>
+  <a class="btn btn-success" href="#/order/{{dish.did}}">我要下单</a>
+  <button class="btn btn-info" ng-click="jump('/order/'+dish.did)">我要下单</button>
+
+</div>

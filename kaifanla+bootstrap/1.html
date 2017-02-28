@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body ng-controller="c1">
+  <h1>方向1的数据绑定实现原理</h1>
+  <p>{{age}}</p>
+  <p ng-bind="age"></p>
+  <hr/>
+  <p>{{::age}}</p>
+  <p ng-bind="::age"></p>
+  <hr/>
+
+  <script src="js/angular.js"></script>
+  <script>
+    angular.module('myApp',['ng'])
+      .controller('c1', function($scope, $interval){
+        $scope.age = 10;
+        $scope.age++;
+        //使用Controller修改Model
+        $interval(function(){
+          $scope.age++;
+        },1000)
+
+      })
+  </script>
+</body>
+</html>

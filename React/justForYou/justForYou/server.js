@@ -12,6 +12,7 @@ var cookieParser = require('cookie-parser');
 app.use(express.static(__dirname));
 //导入文件
 require('./db');
+
 var mongoose = require('mongoose');
 
 //online-API

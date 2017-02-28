@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body ng-controller="c1">
+  <h1>方向1的数据绑定实现原理——深入探讨-3</h1>
+  <p>AGE1: {{age1}}</p>
+  <p>AGE2: {{age2}}</p>
+
+  <script src="js/angular.js"></script>
+  <script>
+    angular.module('myApp',['ng'])
+      .controller('c1', function($scope, $interval){
+          $scope.age1 = 10;
+          $scope.age2 = 20;
+
+          window.setInterval(function(){
+            $scope.age1++;
+            console.log('age1的值改变了：'+$scope.age1);
+            $scope.$digest();  //触发轮询$watch队列
+
+            /*//$scope.$apply();    //触发轮询$watch队列
+            $scope.$apply(function(){
+              $scope.age1++;
+              console.log('age1的值改变了：'+$scope.age1);
+
+            })*/
+          }, 1000)
+      })
+  </script>
+</body>
+</html>

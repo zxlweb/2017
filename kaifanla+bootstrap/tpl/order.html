@@ -1,0 +1,46 @@
+<div class="order container">
+  <h2>我要下单</h2>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+
+      <form>
+        <div class="form-group">
+          <label for="user_name">接收人：</label>
+          <input class="form-control" type="text" id="user_name" ng-model="order.user_name"/>
+        </div>
+        <div class="form-group">
+          <label>性别：</label>
+          <div class="radio-inline">
+            <label>
+              <input name="sex" type="radio" value="1" ng-model="order.sex"/>男
+            </label>
+          </div>
+          <div class="radio-inline">
+            <label>
+              <input name="sex" type="radio" value="2" ng-model="order.sex"/>女
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phone">联系电话：</label>
+          <input class="form-control" type="text" id="phone" ng-model="order.phone"/>
+        </div>
+        <div class="form-group">
+          <label for="addr">送餐地址：</label>
+          <textarea class="form-control" id="addr" rows="3" ng-model="order.addr"></textarea>
+        </div>
+        <div class="form-group">
+          <input class="btn btn-success btn-block" type="button" value="提交订单" ng-click="submitOrder()"/>
+        </div>
+      </form>
+
+      <div class="alert alert-success">
+        <h4>下单成功！</h4>
+        <p>您的订单编号为：{{999}}。</p>
+        <p>您可以在 <a href="#/myorder">我的订单</a> 中查看自己所有的订单。</p>
+      </div>
+
+    </div>
+  </div>
+</div>
