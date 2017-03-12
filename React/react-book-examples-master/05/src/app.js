@@ -13,7 +13,8 @@ const history = syncHistoryWithStore(browserHistory, store);
 ReactDOM.render((
   <Provider store={store}>
     <div>
-      {routes(history)}
+    // 无状态组件
+      {routes(browserHistory)}
       <DevTools />
     </div>
   </Provider>

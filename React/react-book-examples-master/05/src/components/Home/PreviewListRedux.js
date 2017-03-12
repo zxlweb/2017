@@ -8,12 +8,36 @@ const LOAD_ARTICLES = 'LOAD_ARTICLES';
 const LOAD_ARTICLES_SUCCESS = 'LOAD_ARTICLES_SUCCESS';
 const LOAD_ARTICLES_ERROR = 'LOAD_ARTICLES_ERROR';
 
-export function loadArticles() {
+// export function loadArticles() {
+//   return {
+//     types: [LOAD_ARTICLES, LOAD_ARTICLES_SUCCESS, LOAD_ARTICLES_ERROR],
+//     url: '/api/articles.json',
+//   };
+// }
+function requestArticles(){
   return {
-    types: [LOAD_ARTICLES, LOAD_ARTICLES_SUCCESS, LOAD_ARTICLES_ERROR],
-    url: '/api/articles.json',
-  };
+    type:LOAD_ARTICLES
+  }
 }
+function receivePosts(json){
+  return {
+    type:LOAD_ARTICLES_SUCCESS,
+    payload:json
+  }
+
+}
+// 异步的操作
+export function loadArticles(){
+  return dispatch=>{
+    dispatch(requestArticles());
+    return fetch('./api/articles.json')
+    .then(response =>response.json())
+    .then(json=>dispatch(receivePosts(json)))
+  }
+
+}
+
+
 
 export default function previewList(state = initialState, action) {
   switch (action.type) {

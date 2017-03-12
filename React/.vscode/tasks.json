@@ -1,0 +1,12 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.1.0",
+    "command": "Chrome",
+      "windows": {
+        "command": "C:/Users/think/AppData/Local/Google/Chrome/Application/chrome.exe" //chrome浏览器的路径
+    },
+    "isShellCommand": true,
+    "args": ["${file}"],
+    "showOutput": "always"
+}

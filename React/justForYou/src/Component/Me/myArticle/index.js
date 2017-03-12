@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {UserModel} from '../../dataModel';
 import {Link} from 'react-router'
 

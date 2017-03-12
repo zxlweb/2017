@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 
 class Preview extends React.Component {
   static propTypes = {
@@ -12,7 +13,8 @@ class Preview extends React.Component {
     e.preventDefault();
 
     // 使用 react-router-redux 提供的方法跳转，以便更新对应的 store
-    this.props.push(`/detail/${id}`);
+    // this.props.push(`/detail/${id}`);
+    browserHistory.push(`/detail/${id}`);
   }
 
   render() {
