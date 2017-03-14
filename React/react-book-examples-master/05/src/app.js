@@ -7,15 +7,18 @@ import { browserHistory } from 'react-router';
 import routes from './routes';
 import DevTools from './redux/DevTools';
 
-const store = configureStore();
+const initialState=window.__INITIAL_STATE__;
+const store = configureStore(initialState);
 const history = syncHistoryWithStore(browserHistory, store);
 
 ReactDOM.render((
-  <Provider store={store}>
+  <div>
+      <Provider store={store}>
     <div>
-    // 无状态组件
       {routes(browserHistory)}
       <DevTools />
     </div>
   </Provider>
+  </div>
+
 ), document.getElementById('root'));
