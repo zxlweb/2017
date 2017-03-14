@@ -1,13 +1,30 @@
 import express from 'express';
+
+import webpack from 'webpack';
+import webpackConfig from '../webpack.config';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+
+
 import React from 'react';
 import {renderToString} from 'react-dom/server';
 import {RoutingContext,match} from 'react-router';
 import {Provider} from 'react-redux';
-import {routes} from './src/routes/index';
-import configureStore from './src/redux/configureStore';
+import {routes} from '../src/routes/index';
+import configureStore from '../src/redux/configureStore';
+
 
 const app=express();
-const port = 3000
+const port = 3000;
+
+if(process.env.NODE_ENV !== 'production'){
+  const compiler = webpack(webpackConfig);
+  console.log('serside')
+  app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }));
+  app.use(webpackHotMiddleware(compiler));
+}else{
+  app.use('/static', express.static(__dirname + '/../../dist'));
+}
 function renderFullPage(html,initialState){
  return `
         <!DOCTYPE html>
@@ -48,12 +65,8 @@ app.use((req,res)=>{
                 store.dispatch(fecthItem(renderProps.params.id))
             ])
             .then(()=>{
-                // 使用renderToString()，在发送前渲染html
-                const html=renderToString(
-                    <Provider store={store}>
-                        <RoutingContext {...renderProps}/>
-                    </Provider>
-                );
+        
+                const html=renderToString(<Provider store={store}><RoutingContext {...renderProps}/></Provider>);
                 res.end(renderFullPage(html,state))
             })
         }else{

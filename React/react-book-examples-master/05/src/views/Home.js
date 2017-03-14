@@ -4,14 +4,19 @@ import PreviewList from '../components/Home/PreviewList';
 import { actions } from './HomeRedux';
 import { push } from 'react-router-redux';
 
-@connect(state => {
+function mapStateToProps(state){
   return {
     articleList: state.home.list.articleList,
-  };
-}, {
-  push,
-  ...actions,
-})
+  }
+
+}
+function mapDispatchToProps(actions){
+  return {
+   ...actions,
+   push
+  }
+}
+
 class Home extends React.Component {
   render() {
     const { loadArticles, articleList, push } = this.props;
@@ -25,5 +30,6 @@ class Home extends React.Component {
     );
   }
 }
+connect(mapStateToProps,mapDispatchToProps)(Home);
 
 export default Home;
