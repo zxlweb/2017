@@ -1,41 +1,43 @@
 http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/
-瘳雪峰-Git教程
+锟斤拷雪锟斤拷-Git锟教筹拷
 http://www.cnblogs.com/cassvin/archive/2012/01/29/git_commands.html
-Git命令小记
+Git锟斤拷锟斤拷小锟斤拷
 http://blog.csdn.net/ithomer/article/details/7529022
-Git常用命令
+Git锟斤拷锟斤拷锟斤拷锟斤拷
 https://git-scm.com/book/zh/v2
 Git-book
 http://gitref.org/zh/index.html
-Git参考手册
+Git锟轿匡拷锟街诧拷
 http://livoras.com/post/28
-使用git和github进行协同开发流程 
+使锟斤拷git锟斤拷github锟斤拷锟斤拷协同锟斤拷锟斤拷锟斤拷锟斤拷 
 https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.zh-cn.md
-github秘籍
+github锟截硷拷
 http://onlywei.github.io/explain-git-with-d3/
 https://github.com/onlywei/explain-git-with-d3
-动画方式练习git
+锟斤拷锟斤拷锟斤拷式锟斤拷习git
 http://www.cnblogs.com/rubylouvre/archive/2013/01/24/2874694.html
-如何在github上fork一个项目来贡献代码以及同步原作者的修改
+锟斤拷锟斤拷锟斤拷github锟斤拷fork一锟斤拷锟斤拷目锟斤拷锟斤拷锟阶达拷锟斤拷锟皆硷拷同锟斤拷原锟斤拷锟竭碉拷锟睫革拷
 https://github.com/phodal/github-roam
-GitHub 漫游指南
+GitHub 锟斤拷锟斤拷指锟斤拷
 
 http://blog.chinaunix.net/uid-26495963-id-3367377.html
-github readme.md 添加图片 
+github readme.md 锟斤拷锟斤拷图片 
 
 http://www.imooc.com/learn/390
-版本控制入门 – 搬进 Github
+锟芥本锟斤拷锟斤拷锟斤拷锟斤拷 锟紺 锟斤拷锟斤拷 Github
 http://www.imooc.com/learn/208
-版本管理工具介绍—Git篇
+锟芥本锟斤拷锟斤拷锟斤拷锟竭斤拷锟杰★拷Git篇
 http://m.nowcoder.com/courses/2
-GitHub&Git入门基础
+GitHub&Git锟斤拷锟脚伙拷锟斤拷
 
 http://f2e.im/t/7
 http://htmlpreview.github.com/
-github 在线预览
+github 锟斤拷锟斤拷预锟斤拷
 
 https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc/related
-github插件
+github锟斤拷锟斤拷
 
 http://www.jefftk.com/icdiff
-一个能并列高亮显示文件比较结果的小工具
+一锟斤拷锟杰诧拷锟叫革拷锟斤拷锟斤拷示锟侥硷拷锟饺较斤拷锟斤拷锟斤拷小锟斤拷锟斤拷
+
+

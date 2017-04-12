@@ -11,8 +11,8 @@ class List extends Component{
 			list:this.props.list.map(entry=>({
 				text:entry.text,
 				checked:entry.checked
-			});
-		});
+			})
+		})
 
 	}
 	onItemChange(entry){

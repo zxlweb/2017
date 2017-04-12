@@ -10,9 +10,9 @@ class PreviewList extends React.Component {
     push: React.PropTypes.func,
   };
 
-  // componentDidMount() {
-  //   this.props.loadArticles();
-  // }
+  componentDidMount() {
+    this.props.loadArticles();
+  }
 
   render() {
     const { loading, error, articleList } = this.props;

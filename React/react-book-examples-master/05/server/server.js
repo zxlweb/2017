@@ -1,31 +1,36 @@
-import express from 'express';
+// import express from 'express';
 
-import webpack from 'webpack';
-import webpackConfig from '../webpack.config';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
+// import webpack from 'webpack';
+// import webpackConfig from '../webpack.config';
+// import webpackDevMiddleware from 'webpack-dev-middleware';
+// import webpackHotMiddleware from 'webpack-hot-middleware';
 
 
 import React from 'react';
 import {renderToString} from 'react-dom/server';
 import {RoutingContext,match} from 'react-router';
 import {Provider} from 'react-redux';
-import {routes} from '../src/routes/index';
+import routes from '../src/routes/index';
 import configureStore from '../src/redux/configureStore';
 
-
+const express=require('express');
 const app=express();
 const port = 3000;
+// const compiler = webpack(webpackConfig);
+// app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }));
+// app.use(webpackHotMiddleware(compiler));
 
-if(process.env.NODE_ENV !== 'production'){
-  const compiler = webpack(webpackConfig);
-  console.log('serside')
-  app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }));
-  app.use(webpackHotMiddleware(compiler));
-}else{
-  app.use('/static', express.static(__dirname + '/../../dist'));
-}
-function renderFullPage(html,initialState){
+var webpack = require('webpack');
+var webpackConfig = require('../webpack.config');
+var compiler = webpack(webpackConfig);
+
+// webpackDevMiddleware uses webpack to compile assets in-memory and serve them
+var webpackDevMiddleware=require('webpack-dev-middleware');
+var webpackHotMiddleware=require('webpack-hot-middleware');
+
+app.use(webpackDevMiddleware(compiler, {noInfo: true, publicPath: webpackConfig.output.publicPath}));
+app.use(webpackHotMiddleware(compiler));
+function renderFullPage(html){
  return `
         <!DOCTYPE html>
         <html>
@@ -40,9 +45,6 @@ function renderFullPage(html,initialState){
           </div>
         </div>
         // 将store的状态写入全局变量，这样客户端初始化render的时候，会校验服务器生成的HTML结构，并且同步到初始化状态，然后整个页面被客户端接管
-        <script>
-            window.__INITIAL_STATE__=${JSON.stringfy(initialState)}
-        </script>
         <script type="text/javascript" src="build/app.bundle.js"></script>
         </body>
         </html>
@@ -50,8 +52,9 @@ function renderFullPage(html,initialState){
 
  
 }
-app.use((req,res)=>{
-    match({routes,location:req.url},(err,redirectLocation,renderProps)=>{
+app.get('*',(req,res)=>{
+
+    match({routes:routes,location:req.url},(err,redirectLocation,renderProps)=>{
         if(err){
             res.status(500).end(`Internal Server Error ${err}`);
         }else if(redirectLocation){
@@ -67,13 +70,14 @@ app.use((req,res)=>{
             .then(()=>{
         
                 const html=renderToString(<Provider store={store}><RoutingContext {...renderProps}/></Provider>);
-                res.end(renderFullPage(html,state))
+                res.end(renderFullPage(html))
             })
         }else{
             res.status(400).end('Not found');
         }
     });
-});
+})
+
 
 app.listen(port, (error) => {
   if (error) {

@@ -39,6 +39,7 @@ export function loadArticles(){
 
 
 
+
 export default function previewList(state = initialState, action) {
   switch (action.type) {
     case LOAD_ARTICLES: {

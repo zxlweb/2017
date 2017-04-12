@@ -9,11 +9,12 @@ import DevTools from './redux/DevTools';
 
 const initialState=window.__INITIAL_STATE__;
 const store = configureStore(initialState);
+// Create an enhanced histoy that syncs Navigation events with the store 
 const history = syncHistoryWithStore(browserHistory, store);
 
 ReactDOM.render((
   <div>
-      <Provider store={store}>
+  <Provider store={store}>
     <div>
       {routes(browserHistory)}
       <DevTools />

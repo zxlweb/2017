@@ -55,6 +55,7 @@ class IndexList extends React.Component {
             })
                 this.loadingFinish(this.refs.outerScroller,this.refs.preloader,this.refs.scrollList)
         }, (err)=> {
+            
             console.log(err);
         })
     }

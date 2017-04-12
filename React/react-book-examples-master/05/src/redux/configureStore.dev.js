@@ -1,5 +1,5 @@
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
-import { routerReducer } from 'react-router-redux';
+import { routerReducer,routerMiddleware } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 
 import createFetchMiddleware from 'redux-composable-fetch';
@@ -18,12 +18,12 @@ import DevTools from './DevTools';
 //   },
 // });
 
-
+const middlewear=routerMiddleware(browserHistory);
 const finalCreateStore = compose(
-  applyMiddleware(ThunkMiddleware),
+  applyMiddleware(ThunkMiddleware,middlewear),
   DevTools.instrument()
 )(createStore);
-
+// routerReducer function stores location updates from history,if you use combineReducers ,it should be nested under the  routing  key 
 const reducer = combineReducers({
   ...rootReducer,
   routing: routerReducer,
@@ -31,6 +31,5 @@ const reducer = combineReducers({
 
 export default function configureStore(initialState) {
   const store = finalCreateStore(reducer, initialState);
-
   return store;
 }
