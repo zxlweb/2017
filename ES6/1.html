@@ -7,39 +7,36 @@
 </head>
 
 <body>
-  <script type="text/javascript"> </script>
   <script type="text/javascript">
-    // /*	function Timer() {
-//   this.s1 = 0;
-//   this.s2 = 0;
-//   // 箭头函数
-//   setInterval(() => this.s1++, 1000);
-//   // 普通函数
-//   setInterval(function () {
-//     this.s2++;
-//   }, 1000);
-// }
-
-// var timer = new Timer();
-
-// setTimeout(() => console.log('s1: ', timer.s1), 3100);
-// setTimeout(() => console.log('s2: ', timer.s2), 3100);*/
-
-// var obj={
-// 	fun:()=>{console.log(this)}
-// }
-// class Obj {
-// 	constructor(x) {
-// 		this.x=()=>{console.log(this.y)}
-// 		this.y='yes'
-// 	}
-// }
-// console.log(obj.fun);
-// var obj2=new Obj();
-// console.log(obj2.x());
-
+    var splitArray = function (nums, m) {
+      // 二分搜索法
+      let len = nums.length, sum = 0, max = 0, left, mid, right;
+      // s1:找出数组中最大值和数组素有元素的和
+      for (let i = 0; i < len; i++) {
+        sum += nums[i];
+        max = Math.max(max, nums[i]);
+      }
+      left = max; right = sum;
+      while (left < right) {
+        mid = (left + right) / 2;
+        //s3:找出数组中和最大且小于mid的元素
+        let total = 0, count = 1;
+        for (let i = 0; i < len; i++) {
+          total += nums[i];
+          if (total > mid) {
+            count++;
+            if (count > m) {
+              right = mid + 1;
+            } else {
+              left = mid - 1;
+            }
+          }
+        }
+        return left;
+      }
+    };
+    console.log(splitArray([7, 2, 5, 10, 8], 2));
   </script>
-
 </body>
 
 </html>
