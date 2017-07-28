@@ -14,7 +14,6 @@
     "test-functional": "node run_casperjs.js",
     "test-server": "mocha test/server/main.js"
   },
-
   "author": "",
   "license": "Apache 2.0",
   "bugs": {

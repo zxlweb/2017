@@ -9,6 +9,7 @@ fs.readFile('./test/1.txt', 'utf-8', function (err, data) {
         // let str = data.toString('utf-8');
         console.log(data);
     }
+
 });
 
 // 同步读取文件

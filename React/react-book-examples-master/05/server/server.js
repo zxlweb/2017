@@ -49,8 +49,6 @@ function renderFullPage(html){
         </body>
         </html>
  `
-
- 
 }
 app.get('*',(req,res)=>{
 
