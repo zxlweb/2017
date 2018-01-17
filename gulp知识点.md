@@ -1,4 +1,4 @@
-# gulp.task(taskName,[deps],[fn]) #
+gi# gulp.task(taskName,[deps],[fn]) #
 deps:Array 一个包含任务列表的的数组，这些任务会在你当前任务之前执行
 注意：确保任务列表中的任务都是用来正确的异步执行函数：使用一个cb，或者返回一个Promise或者stream
 fn：定义该任务所要执行的一些操作，
