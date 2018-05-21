@@ -1,8 +1,8 @@
 module.exports = {
-    cookieSecret:'justForYou',
+    cookieSecret: 'justForYou',
     //div-data
-    // url:'mongodb://localhost:27017/justForYou'
-    //online-data
-    url:'mongodb://114.215.80.72:27017/justForYou'
-    
+    url: 'mongodb://localhost:27017/zxl'
+        //online-data
+        // url: 'mongodb://127.0.0.1/justForYou'
+
 }
