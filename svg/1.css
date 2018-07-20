@@ -1,0 +1,48 @@
+.container {
+    width: 200px;
+    margin: 20px auto;
+}
+
+.yy {
+    stroke-width: 1;
+    stroke: #ff7700;
+    animation: lineMove 3s ease-out infinite;
+}
+
+.y2 {
+    stroke-width: 1;
+    stroke: #ff7700;
+    animation: lineMove2 3s ease-out infinite;
+}
+
+@keyframes lineMove {
+    0% {
+        stroke-dasharray: 0, 584;
+    }
+    50% {
+        stroke-dasharray: 584, 584;
+        fill: rgba(0, 0, 0, 0);
+        opacity: 1;
+    }
+    100% {
+        stroke-dasharray: 584, 584;
+        fill: rgba(255, 119, 0, .5);
+        opacity: 0;
+    }
+}
+
+@keyframes lineMove2 {
+    0% {
+        stroke-dasharray: 0, 140;
+    }
+    50% {
+        stroke-dasharray: 140, 140;
+        fill: rgba(0, 0, 0, 0);
+        opacity: 1;
+    }
+    100% {
+        stroke-dasharray: 140, 140;
+        fill: rgba(255, 119, 0, .5);
+        opacity: 0;
+    }
+}
