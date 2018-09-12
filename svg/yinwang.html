@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <script src="./js/anime.min.js"></script>
+        <script src="./js/path-slider.js"></script>
+        <style>
+            Defining images .path-slider__item--1 .item__circle {
+                background-image: url("../images/img1.jpg");
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Path Slider Container -->
+        <div class="path-slider">
+            <!-- Slider items -->
+            <a href="#" class="path-slider__item path-slider__item--1">
+                <div class="item__circle"></div>
+            </a>
+            <a href="#" class="path-slider__item path-slider__item--2">
+                <div class="item__circle"></div>
+            </a>
+            <a href="#" class="path-slider__item path-slider__item--3">
+                <div class="item__circle"></div>
+            </a>
+
+        </div>
+    </body>
+    <script>
+        (function() {
+            // Creating SVG and path elements and insert to DOM
+
+            var svgNS = 'http://www.w3.org/2000/svg';
+            var svgEl = document.createElementNS(svgNS, 'svg');
+
+            var pathEl = document.createElementNS(svgNS, 'path');
+            // The `getSinPath` function return the `path` in String format
+            pathEl.setAttribute('d', getSinPath());
+            pathEl.setAttribute('class', 'path-slider__path');
+
+            svgEl.appendChild(pathEl);
+            document.body.appendChild(svgEl);
+
+
+            // Changing `background-image`
+            // Firstly, saving the computed `background` of each item, as these are defined in CSS
+            // When item is selected, the `background` is set accordingly
+
+            var items = document.querySelectorAll('.path-slider__item');
+            var images = [];
+            for (var j = 0; j < items.length; j++) {
+                images.push(getComputedStyle(items[j].querySelector('.item__circle')).getPropertyValue('background-image'));
+            }
+
+            var imgAnimation;
+            var lastIndex;
+            var setImage = function(index) {
+                if (imgAnimation) {
+                    imgAnimation.pause();
+                    sliderContainer.style['background-image'] = images[lastIndex];
+                    sliderContainerBackground.style['opacity'] = 0;
+                }
+                lastIndex = index;
+                sliderContainerBackground.style['background-image'] = images[index];
+                imgAnimation = anime({
+                    targets: sliderContainerBackground,
+                    opacity: 1,
+                    easing: 'linear'
+                });
+            };
+
+
+
+            // Setting up the options
+            var options = {
+                startLength: 0, // start positioning the slider items at the beginning of the SVG path
+                duration: 3000, // animation duration (used by anime.js)
+                stagger: 15, // incrementally delays among items, producing an staggering effect
+                easing: 'easeOutElastic', // easing function (used by anime.js)
+                elasticity: 600, // elasticity factor (used by anime.js)
+                rotate: true // This indicates that items should be rotated properly to match the SVG path curve
+            };
+
+            // Initialize the slider using our SVG path, items, and options
+            new PathSlider('.path-slider__path', '.path-slider__item', options);
+
+        })();
+    </script>
+
+</html>
