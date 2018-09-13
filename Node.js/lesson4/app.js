@@ -6,11 +6,13 @@ let app = express();
 
 var url = require('url');
 var cnodeUrl = 'https://cnodejs.org/';
+var topicUrls = [];
+var topicRes = [];
 app.get('/', function(req, res, next) {
     // 用 superagent 去抓取 https://cnodejs.org/ 的内容
     superagent.get(cnodeUrl)
         .end(function(err, res) {
-            var topicUrls = [];
+
             // 常规的错误处理
             if (err) {
                 return next(err);
@@ -33,7 +35,7 @@ app.get('/', function(req, res, next) {
                 // topics 是个数组，包含了 40 次 ep.emit('topic_html', pair) 中的那 40 个 pair
 
                 // 开始行动
-                topics = topics.map(function(topicPair) {
+                topicRes = topics.map(function(topicPair) {
                     // 接下来都是 jquery 的用法了
                     var topicUrl = topicPair[0];
                     var topicHtml = topicPair[1];
@@ -45,21 +47,29 @@ app.get('/', function(req, res, next) {
                     });
                 });
 
-                console.log('final:');
-                console.log(topics);
+
+
+
+
             });
 
             topicUrls.forEach(function(topicUrl) {
                 superagent.get(topicUrl)
                     .end(function(err, res) {
                         console.log('fetch ' + topicUrl + ' successful');
+
                         ep.emit('topic_html', [topicUrl, res.text]);
                     });
             });
 
-            console.log(topicUrls, 'topicUrls')
+
+
         });
+    res.send(topicRes)
+
+
 });
+
 app.listen(3000, () => {
     console.log('app is running at port 3000');
 })
