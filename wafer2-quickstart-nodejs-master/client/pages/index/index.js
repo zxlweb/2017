@@ -10,9 +10,45 @@ Page({
         takeSession: false,
         requestResult: ''
     },
+    onLoad: function() {
+        console.log('ggg')
+        wx.showShareMenu({
+            withShareTicket: true
+        })
+    },
+    onShareAppMessage: function(ops) {
+
+        if (ops.from === 'button') {
+            // 来自页面内转发按钮
+            console.log(ops.target)
+        }
+        return {
+            title: '转发',
+            path: `pages/index/index`,
+            success: function(res) {
+                // 转发成功
+                console.log("转发成功:" + JSON.stringify(res));
+                var shareTickets = res.shareTickets;
+                // if (shareTickets.length == 0) {
+                //   return false;
+                // }
+                // //可以获取群组信息
+                wx.getShareInfo({
+                    shareTicket: shareTickets[0],
+                    success: function(res) {
+                        console.log(res)
+                    }
+                })
+            },
+            fail: function(res) {
+                // 转发失败
+                console.log("转发失败:" + JSON.stringify(res));
+            }
+        }
+    },
 
     // 用户登录示例
-    bindGetUserInfo: function () {
+    bindGetUserInfo: function() {
         if (this.data.logged) return
 
         util.showBusy('正在登录')
@@ -49,40 +85,40 @@ Page({
     },
 
     // 切换是否带有登录态
-    switchRequestMode: function (e) {
+    switchRequestMode: function(e) {
         this.setData({
             takeSession: e.detail.value
         })
         this.doRequest()
     },
 
-    doRequest: function () {
+    doRequest: function() {
         util.showBusy('请求中...')
         var that = this
         var options = {
             url: config.service.requestUrl,
             login: true,
-            success (result) {
+            success(result) {
                 util.showSuccess('请求成功完成')
                 console.log('request success', result)
                 that.setData({
                     requestResult: JSON.stringify(result.data)
                 })
             },
-            fail (error) {
+            fail(error) {
                 util.showModel('请求失败', error);
                 console.log('request fail', error);
             }
         }
-        if (this.data.takeSession) {  // 使用 qcloud.request 带登录态登录
+        if (this.data.takeSession) { // 使用 qcloud.request 带登录态登录
             qcloud.request(options)
-        } else {    // 使用 wx.request 则不带登录态
+        } else { // 使用 wx.request 则不带登录态
             wx.request(options)
         }
     },
 
     // 上传图片接口
-    doUpload: function () {
+    doUpload: function() {
         var that = this
 
         // 选择图片
@@ -90,7 +126,7 @@ Page({
             count: 1,
             sizeType: ['compressed'],
             sourceType: ['album', 'camera'],
-            success: function(res){
+            success: function(res) {
                 util.showBusy('正在上传')
                 var filePath = res.tempFilePaths[0]
 
@@ -100,7 +136,7 @@ Page({
                     filePath: filePath,
                     name: 'file',
 
-                    success: function(res){
+                    success: function(res) {
                         util.showSuccess('上传图片成功')
                         console.log(res)
                         res = JSON.parse(res.data)
@@ -123,7 +159,7 @@ Page({
     },
 
     // 预览图片
-    previewImg: function () {
+    previewImg: function() {
         wx.previewImage({
             current: this.data.imgUrl,
             urls: [this.data.imgUrl]
@@ -131,7 +167,7 @@ Page({
     },
 
     // 切换信道的按钮
-    switchChange: function (e) {
+    switchChange: function(e) {
         var checked = e.detail.value
 
         if (checked) {
@@ -141,9 +177,9 @@ Page({
         }
     },
 
-    openTunnel: function () {
+    openTunnel: function() {
         util.showBusy('信道连接中...')
-        // 创建信道，需要给定后台服务地址
+            // 创建信道，需要给定后台服务地址
         var tunnel = this.tunnel = new qcloud.Tunnel(config.service.tunnelUrl)
 
         // 监听信道内置消息，包括 connect/close/reconnecting/reconnect/error
@@ -191,7 +227,7 @@ Page({
      */
     sendMessage() {
         if (!this.data.tunnelStatus || !this.data.tunnelStatus === 'connected') return
-        // 使用 tunnel.isActive() 来检测当前信道是否处于可用状态
+            // 使用 tunnel.isActive() 来检测当前信道是否处于可用状态
         if (this.tunnel && this.tunnel.isActive()) {
             // 使用信道给服务器推送「speak」消息
             this.tunnel.emit('speak', {

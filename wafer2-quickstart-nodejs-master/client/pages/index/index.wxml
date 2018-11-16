@@ -36,4 +36,9 @@
             <text>快速增加 CGI</text>
         </navigator>
     </view>
+
+    <!-- 分享测试-->
+    <view>
+        <button open-type="share">分享按钮</button>
+    </view>
 </view>
