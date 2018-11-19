@@ -11,6 +11,12 @@ App({
         qcloud.setLoginUrl(config.service.loginUrl)
     },
     onShow: function(obj) {
+        wx.getShareInfo({
+            shareTicket: obj.shareTicket,
+            success: function(res) {
+                console.log(res)
+            }
+        })
         console.log(obj)
             // console.log('进入小程序啦')
     },

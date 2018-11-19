@@ -29,8 +29,22 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 1,
+			"list": [
+				{
+					"id": -1,
+					"name": "qunliao",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "qunliao",
+					"pathName": "pages/index/index",
+					"scene": "1044"
+				}
+			]
 		}
 	}
 }
