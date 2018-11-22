@@ -10,8 +10,8 @@ Page({
         takeSession: false,
         requestResult: ''
     },
-    onLoad: function() {
-        console.log('ggg')
+    onLoad: function(options) {
+        console.log('index onLoad', options)
         wx.showShareMenu({
             withShareTicket: true
         })
@@ -24,11 +24,11 @@ Page({
         }
         return {
             title: '转发',
-            path: `pages/index/index`,
+            path: `pages/index/index?uid=zxl`,
             success: function(res) {
                 // 转发成功
                 console.log("转发成功:" + JSON.stringify(res));
-                var shareTickets = res.shareTickets;
+                var shareTickets = res.shareTickets ? shareTickets : '';
                 // if (shareTickets.length == 0) {
                 //   return false;
                 // }
