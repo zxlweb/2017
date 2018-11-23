@@ -15,6 +15,16 @@ Page({
         wx.showShareMenu({
             withShareTicket: true
         })
+        wx.checkSession({
+            success() {
+                console.log('session_key 未过期')
+                    //session_key 未过期，并且在本生命周期一直有效
+            },
+            fail() {
+                // session_key 已经失效，需要重新执行登录流程
+                wx.login() //重新登录
+            }
+        })
     },
     onShareAppMessage: function(ops) {
 
@@ -47,42 +57,7 @@ Page({
         }
     },
 
-    // 用户登录示例
-    bindGetUserInfo: function() {
-        if (this.data.logged) return
 
-        util.showBusy('正在登录')
-
-        const session = qcloud.Session.get()
-
-        if (session) {
-            // 第二次登录
-            // 或者本地已经有登录态
-            // 可使用本函数更新登录态
-            qcloud.loginWithCode({
-                success: res => {
-                    this.setData({ userInfo: res, logged: true })
-                    util.showSuccess('登录成功')
-                },
-                fail: err => {
-                    console.error(err)
-                    util.showModel('登录错误', err.message)
-                }
-            })
-        } else {
-            // 首次登录
-            qcloud.login({
-                success: res => {
-                    this.setData({ userInfo: res, logged: true })
-                    util.showSuccess('登录成功')
-                },
-                fail: err => {
-                    console.error(err)
-                    util.showModel('登录错误', err.message)
-                }
-            })
-        }
-    },
 
     // 切换是否带有登录态
     switchRequestMode: function(e) {
