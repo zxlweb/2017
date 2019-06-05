@@ -5,7 +5,7 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 //配置文件
 var settings = require('./settings');
-var cookieParser = require('cookie-parser');
+
 var bodyParser = require('body-parser');
 //解析cookie req.cookie
 var cookieParser = require('cookie-parser');
@@ -21,7 +21,7 @@ global.API = 'http://114.215.80.72:4545';
 //dev-API
 // global.API = 'http://localhost:4545';
 //加密
-var utils =require('./utils/md5');
+var utils = require('./utils/md5');
 var user = require('./routes/user');
 var article = require('./routes/article');
 app.all('*', function(req, res, next) {
@@ -36,7 +36,7 @@ app.all('*', function(req, res, next) {
 // parse application/json
 app.use(bodyParser.json())
 
-app.use('*',function (req,res,next) {
+app.use('*', function(req, res, next) {
     next();
 })
 app.use('/user', user);
@@ -49,10 +49,6 @@ app.use(function(err, req, res, next) {
 
 
 
-app.listen('4545',function () {
+app.listen('4545', function() {
     console.log('listen 4545 port')
 })
-
-
-
-

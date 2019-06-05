@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="index.css">
+        <script src="../utils/fitWindow.js"></script>
+        <script src="./mobileSelect.js"></script>
+
+        <!-- <script src="http://192.168.41.5:8080/target/target-script-min.js#anonymous"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.7/es5-shim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.7/es5-sham.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.34.2/es6-shim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.34.2/es6-sham.min.js"></script>
+
+        <!-- Automatically provides/replaces `Promise` if missing or broken. -->
+        <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
+        <script src="./fetch.js"></script>
+
+        <script src="./dataModel.js"></script>
+
+        <script src="../lib/jquery-3.2.1.min.js"></script>
+        <script src="http://192.168.41.5:8081/target/target-script-min.js#anonymous"></script>
+
+
+
+
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+
+
+        <title>南京学而思一新生预约报名服务</title>
+    </head>
+
+    <body>
+        <div id='root'>
+            <div class="page1">
+                <div class="banner">
+                    <div class="banner-head-logo">
+                        <img src="./images/banner-head-logo.png" alt="">
+                    </div>
+                    <div class="banner-head">
+                        <img src="./images/banner-head.png" alt="">
+                    </div>
+
+                </div>
+                <div class="content-form">
+
+                    <div class="content-form-title">新生预约报名学而思，请填写如下信息。</div>
+
+                    <div class="content-form-inputs">
+                        <div>
+                            <div class="content-form-input content-form-inputUser">
+                                <label class="label">
+                                                <div class="icon"><img src="./images/people.png" alt=""></div>
+                                                <div>学生姓名</div>
+                                        </label>
+
+
+                                <input type="text" class='content-form-inputUser-input input' id="name">
+                            </div>
+                            <div class="content-form-input content-form-inputTel">
+                                <label class="label">
+                                                <div class="icon"><img src="./images/tel.png" alt=""></div>
+                                                <div>手机号码</div>
+                                               
+                                        </label>
+
+
+                                <input type="text" class='content-form-sms-input input' id="phone">
+                            </div>
+                            <div class="content-form-input content-form-yzCode" id="sms">
+                                <label class="label">
+                                                <div class="icon"><img src="./images/sms.png" alt=""></div>
+                                                <div>验证码</div>
+                                               
+                                        </label>
+                                <input type="text" class='input' id="smsInput" />
+                                <button class="get-code___2QgUf" id="getSms">获取验证码</button>
+                                <button class="get-code___2QgUf" id="waitForSms" style="display:none"></button>
+                            </div>
+
+
+                            <div class="content-form-input" style="margin-bottom:0">
+                                <label class="label">
+                                               
+                                                    <div class="icon"> <img src="./images/icon-1.png" alt=""></div>
+                                                    <div>在读年级</div>
+                                            </label>
+
+
+                                <div class="input" id="area2">
+                                    <div class="class-picker-content">
+
+
+                                    </div>
+                                </div>
+                                <div class="icon-arrow"><img src="./images/arrow.png" alt=""></div>
+                            </div>
+
+                            <div class="content-form-input inviteCode show" style="margin-top:0.1875rem">
+                                <label class="label">
+                                                <div class="icon"><img src="./images/tel.png" alt=""></div>
+                                                <div>邀请码</div>
+                                               
+                                        </label>
+
+
+                                <input type="text" class='content-form-invite-input input' id="invite-code-input">
+                            </div>
+
+
+                            <div class="checkbox-items">
+                                <div class="am-list-item am-list-item-middle">
+                                    <div class="am-list-thumb"><label class="am-checkbox-wrapper"><span class="am-checkbox am-checkbox-checked"><input type="checkbox" class="am-checkbox-input"><span class="am-checkbox-inner"></span></span></label></div>
+                                    <div class="am-list-line">
+                                        <div class="am-list-content">获得老师电话回访，1对1解决报班疑问</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="formButton submitBtn">继续</button>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="page2">
+                <main class="">
+                    <div class="desc___irlfb">报名新生入学诊断，请选择合适场次</div>
+                    <div class="list-container">
+
+                    </div>
+                    <div class="submit___1tnJ7"><button>提交</button></div>
+                    <div class="success-modal" style="display:none">
+                        <div class="modal-warpped">
+                            <div class="img___219Lf">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIwAAACMCAMAAACZHrEMAAAAA3NCSVQICAjb4U/gAAADAFBMVEX////+64v+643+64/+6of+6on+6YP+6YH+53X+5nL+5W7+5Wr94VT+64v+6on+6of+6YP+6YX+6YH+6H7+53r+6Hz+53b+6of+6YP+6YX+6YH+6H7+5Wr+5Gb+6YP+6YH+53r+6Hz+53b+53X+5nD+5nL+5Wr+5Gb+6YH+6H7+53X+53b+5nL+5nD+5Wz942D+6of+6H7+6YH+6Hz+5nD+5nL+5Wz+5W7+53b+53j+5nD+5Wz+5W7+5Wr+5Gb942T+53X+53b+5nD+5Wz+5Gb94lz94lr94Vb+5nD+5nL+5W7+5Gb942D942T942L94lr94FL+5Wr+5Gb942D94Vb94VT94FL+5Gb+5Gj942D94lz94lr94VT94Vb930j942L941794lz94lr94FL94E7930j930r930z93kb93kT93UD93T794lr94VT94Vb94E794FL930r93kb93Dj93Dz92zT92jD92Sb92CT94E794FL930z930j93kb93UL93UD93T793Dz93Dj93Dr92zT92zb92zL92jD92iz92Sr92Sb92Sj92CT92CH92CL91x791yD91xv///////z//vn//vf//fX//fP//fH//O///O3/++n/++v/++f/+uH/+uX/+dv/+d3/+d//+Nf/+Nn/99P/99H/98//9sv+9cX+9cf+9MP+9L/+87z+87n+873+8rX+8rf+8bH+8a/+8a3+8Kn+76X+7p3+7qH+7Zv+7Zn+7JP+64v+64/+6of+6on+6YP+6YX+6H7+6YH+53r+6Hz+53X+53b+5nD+5nL+5W7+5Wr+5Wz+5Gb+5Gj95GT942D94lr94VT94Vb94FL94FD930j930r93kb93kL93kT93UD93UL93T793Dj93Dz93Dr92zT92zL92zb92jD92i792Sr92iz92Sb92Sj92CT92CH92CL91x791xv91yD91xz91hj91hb91hX91RL91RT91RD91A791Ar91Az90wj90wb90wr90gL90gD90QQPxelZAAABAHRSTlMAERERERERERERERERIiIiIiIiIiIiIjMzMzMzMzNEREREREREREREVVVVVVVVVVVmZmZmZmZmZnd3d3d3d3d3iIiIiIiIiIiZmZmZmZmZmZmqqqqqqqq7u7u7u7u7u8zMzMzMzMzMzMzMzMzd3d3d3d3d3d3d3d3d7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7v//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////fU+JyAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAWdEVYdENyZWF0aW9uIFRpbWUAMDkvMjYvMTjDLhd8AAAPnklEQVR4nL2ce1wUVRvHt/JWoa92QfOWpYW3VzLNRH29ZIaJpUhJmuKFNK9QKJopKIZptoUCokgqpphpJqWGCF4zK0zFG6Cb4OKC68LM7sycmTMzy+p7Zld0L2fvu/z+6hMy8+WZ5zzPc55zkck8UmDHV4eGR06bvzQxaWXy6jVfy+XffLt2zarlyz6JmRY5cljX5p491m01CewQFNxveMT0+UtKrt24pVJVVas1Wi1B1KqrlBWKspIl0yeG9Q0K6hD4mN9ZmvceGTFpTvzitXJNbQ1C0OlIJEoSqSMIQltTK5cvjp8z88ORrzzlT5CnXg7u986kT8tu3KaEOl6AEHIAiWUYGolh0X9z6H/ydTzQKBVLJ781JDiolX9QAtqFfBC7YG2KDhmDZlmEYIKgqXoZkRhG+hlFEsT6dfGx41595gnfo7QLDh37UaKKhMggADwEwItmkY1EWKNMjB49pJePP1fAy8OmfvENi95isocTFqOVGGQfiibXJk0Lee5x36E893ro+LhyNRChU5NYigHIjMStme+P6PmIb1ACOgydkigHgJJs4haLyZAsS6WsnNq7URMfsLQdEbVQeYcSIOMmSL1YDllHOfPd3m29JGkW2GnUkjsQsh6C1BsI2bVy+vAgrwZWQPdRUV+qkVXc9BUbId+hNPGTBj7tOcuTwREJJO+tWep5RK5y+mstG3nI0nTgzPgaxnlQcU3oQbrVcWEdPUJp/PSgaBUj+MYsRiHP0a2M6PGs+yyNur67sJbylVlMkpLXullvdHKXpeVr762iBOBDEpMEUftp2Evu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">
+                            </div>
+                            <div>信息提交成功</div>
+                        </div>
+                    </div>
+
+                </main>
+
+            </div>
+            <div class="page3">
+                <img alt="">
+            </div>
+
+        </div>
+        <script type="text/javascript">
+            var stuInfo, gradeId = "",
+                classId = "",
+                timePoint = '',
+                invitation_code = "",
+                serviceCenterId = "",
+                height, agree = "1";
+            window.onload = function() {
+
+                    var addressLocation = new MobileSelect({
+                            trigger: '#area2',
+                            title: '请选择年级和科目',
+                            wheels: [{
+                                data: [{
+                                    id: '1',
+                                    value: '幼儿园',
+                                    childs: [{
+                                        id: '-9',
+                                        value: '托班',
+                                        childs: [{
+                                            id: '-1',
+                                            value: '七大能力'
+                                        }]
+                                    }, {
+                                        id: '-8',
+                                        value: '小班',
+                                        childs: [{
+                                            id: '-1',
+                                            value: '七大能力'
+                                        }]
+                                    }, {
+                                        id: '-7',
+                                        value: '中班',
+                                        childs: [{
+                                            id: '-1',
+                                            value: '七大能力'
+                                        }]
+                                    }, {
+                                        id: '-6',
+                                        value: '大班',
+                                        childs: [{
+                                            id: '1',
+                                            value: '数学'
+                                        }, {
+                                            id: '-1',
+                                            value: '英语'
+
+                                        }]
+                                    }]
+                                }, {
+                                    id: '2',
+                                    value: '小学',
+                                    childs: [{
+                                        id: '2',
+                                        value: '一年级',
+                                        childs: [{
+                                            id: '2',
+                                            value: '数学'
+                                        }, {
+                                            id: '3',
+                                            value: '语文'
+                                        }, {
+                                            id: '4',
+                                            value: '英语'
+                                        }]
+                                    }, {
+                                        id: '2',
+                                        value: '二年级',
+                                        childs: [{
+                                            id: '5',
+                                            value: '数学'
+                                        }, {
+                                            id: '6',
+                                            value: '语文'
+                                        }, {
+                                            id: '7',
+                                            value: '英语'
+                                        }]
+                                    }, {
+                                        id: '3',
+                                        value: '三年级',
+                                        childs: [{
+                                            id: '8',
+                                            value: '数学'
+                                        }, {
+                                            id: '9',
+                                            value: '语文'
+                                        }, {
+                                            id: '10',
+                                            value: '英语'
+                                        }]
+                                    }, {
+                                        id: '4',
+                                        value: '四年级',
+                                        childs: [{
+                                            id: '11',
+                                            value: '数学'
+                                        }, {
+                                            id: '12',
+                                            value: '英语'
+                                        }]
+                                    }, {
+                                        id: '5',
+                                        value: '五年级',
+                                        childs: [{
+                                            id: '13',
+                                            value: '数学'
+                                        }, {
+                                            id: '14',
+                                            value: '英语'
+                                        }]
+                                    }, {
+                                        id: '6',
+                                        value: '六年级',
+                                        childs: [{
+                                            id: '-1',
+                                            value: '数学'
+                                        }, {
+                                            id: '15',
+                                            value: '英语'
+                                        }]
+                                    }, ]
+                                }, {
+                                    id: '7',
+                                    value: '初中',
+                                    childs: [{
+                                            id: '7',
+                                            value: '初一',
+                                            childs: [{
+                                                id: '16',
+                                                value: '数学'
+                                            }, {
+                                                id: '-1',
+                                                value: '英语'
+                                            }]
+                                        }, {
+                                            id: '8',
+                                            value: '初二',
+                                            childs: [{
+                                                id: '-1',
+                                                value: '数学'
+                                            }, {
+                                                id: '17',
+                                                value: '英语'
+                                            }]
+                                        }, {
+                                            id: '9',
+                                            value: '初三',
+                                            childs: [{
+                                                id: '-1',
+                                                value: '数学'
+                                            }, {
+                                                id: '18',
+                                                value: '英语'
+                                            }]
+                                        }
+
+                                    ]
+                                }, {
+                                    id: '8',
+                                    value: '高中',
+                                    childs: [{
+                                        id: '10',
+                                        value: '高一',
+                                        childs: [{
+                                            id: '-1',
+                                            value: '数学'
+                                        }, {
+                                            id: '-1',
+                                            value: '英语'
+                                        }, {
+                                            id: '-1',
+                                            value: '物理'
+                                        }, {
+                                            id: '-1',
+                                            value: '化学'
+                                        }, {
+                                            id: '-1',
+                                            value: '生物'
+                                        }]
+                                    }, {
+                                        id: '11',
+                                        value: '高二',
+                                        childs: [{
+                                            id: '-1',
+                                            value: '数学'
+                                        }, {
+                                            id: '-1',
+                                            value: '物理'
+                                        }, {
+                                            id: '-1',
+                                            value: '化学'
+                                        }, {
+                                            id: '-1',
+                                            value: '生物'
+                                        }, ]
+                                    }, {
+                                        id: '12',
+                                        value: '高三',
+                                        childs: [{
+                                            id: '-1',
+                                            value: '数学'
+                                        }, {
+                                            id: '-1',
+                                            value: '物理'
+                                        }, {
+                                            id: '-1',
+                                            value: '化学'
+                                        }, ]
+                                    }]
+                                }],
+
+
+                            }],
+                            position: [0, 1],
+                            callback: function(indexArr, data) {
+                                console.log(data);
+
+                                document.getElementById('area2').innerHTML = data[1].value + ',' + data[2].value + '';
+                                gradeId = data[1].id;
+                                classId = data[2].id;
+
+
+                                if (data[1].value == "一年级" && data[2].value == "数学") {
+
+                                    $('.inviteCode').removeClass('show')
+
+                                } else {
+                                    $('.inviteCode').addClass('show')
+                                }
+
+                            }
+                        }
+
+                    );
+                    // $.ajax('http://xesentrycms.njpeiyou.com/api/api/eventTracking')
+                    document.getElementsByClassName('page1')[0].style.height = $(window).height() + 'px';
+                    document.getElementsByClassName('page2')[0].style.height = $(window).height() + 'px';
+                    document.getElementsByClassName('page3')[0].style.height = $(window).height() + 'px';
+                    height = $(window).height();
+                    console.log(height)
+                    document.getElementById('root').style.height = height + 'px';
+
+                    var tops = $('body').scrollTop(); //当页面滚动时，把当前距离赋值给页面，这样保持页面滚动条不动
+                    // document.getElementsByClassName('submitBtn')[0].addEventListener('click', function() {
+
+                    //     // var stu_name = document.getElementsByClassName('content-form-inputUser-input')[0].value;
+                    //     // var tel_number = document.getElementsByClassName('content-form-inputTel-input')[0].value;
+                    //     // console.log(stu_name, tel_number);
+                    //     // console.log(UserModel, 'windowUserModel');
+                    //     // UserModel.register({
+                    //     //     stu_name: stu_name,
+                    //     //     tel_number: tel_number
+                    //     // }, function() {
+                    //     //     console.log('success')
+                    //     // }, function() {
+                    //     //     console.log('fail')
+                    //     // })
+                    //     // var response = $.ajax({
+                    //     //     url: 'http://xesentrycms.njpeiyou.com/api/get?gradeId=1'
+                    //     // }).then(function(res) {
+                    //     //     console.log(res)
+                    //     // })
+                    //     /*
+                    //      * 返回的动画
+                    //      */
+                    //     // $(document).unbind("scroll");
+                    //     // $('body').css('overflow', 'auto');
+                    //     // document.documentElement.style.height = document.body.style.height = 'auto';
+
+                    //     // 注意ios 端设置style属性与Android不同
+
+                    //     document.getElementById('root').style = 'transform:translate3d(0px,-' + height + 'px,0px); -webkit-transform:translate3d(0px,-' + height + 'px,0px);-webkit-transition: all 300ms ease 0s;'
+                    //     document.getElementById('root').style.transform = 'translate3d(0px,-' + height + 'px,0px)';
+
+                    //     document.getElementById('root').style.transition = 'all 300ms ease 0s';
+                    // })
+                }
+                // 教学点选择动画
+            $('.list-container').on('click', '.list-item___1E_bI', function(e) {
+                var target = e.target;
+                $(this).addClass('is-choose___111cd').siblings().removeClass('is-choose___111cd');
+                $(this).addClass('open').siblings().removeClass('open');
+
+            })
+            $('.list-container').on('click', '.open', function(e) {
+                var target = e.target;
+
+                $(this).removeClass('open');
+
+            })
+            $('.list-container').on('click', '.theme-checkbox-radio', function(e) {
+                e.stopPropagation();
+
+                timePoint = $(this).text().trim();
+                serviceCenterId = $(this).parents('.list-item___1E_bI').attr('id')
+                if ($(this).parents('.list-item___1E_bI').hasClass('open')) {
+                    $(this).parents('.list-item___1E_bI').removeClass('open')
+                }
+            })
+
+            // 存cookie的方法
+            function setCookie(name, value) {
+                var exp = new Date();
+                exp.setTime(exp.getTime() + 24 * 60 * 60 * 1000);
+                document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + ";path=/";
+            }
+            // 取cookie的方法
+            function getCookie(name) {
+                var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+                if (arr = document.cookie.match(reg)) return unescape(arr[2]);
+                else return null;
+
+            }
+
+            function formatSearch(se) {
+                if (typeof se !== "undefined") {
+                    se = se.substr(1);
+                    var arr = se.split("&"),
+                        obj = {},
+                        newarr = [];
+                    $.each(arr, function(i, v) {
+                        newarr = v.split("=");
+                        if (typeof obj[newarr[0]] === "undefined") {
+                            obj[newarr[0]] = newarr[1];
+                        }
+                    });
+                    return obj;
+                }
+            }
+
+
+            if (window.location.search.indexOf('union_id') != -1) {
+                // 获取unionId
+
+                stuInfo = formatSearch(window.location.search)
+                setCookie('unionId', stuInfo.union_id);
+
+
+            }
+            if (stuInfo.success == '0') {
+                $('#name').val(decodeURI(stuInfo.name));
+                $('#phone').val(stuInfo.phone);
+                $('#sms').addClass('show');
+                $('.content-form-inputUser-input').attr('disabled', true)
+                $('.content-form-sms-input').attr('disabled', true)
+
+            } else if (stuInfo.success == '1') {
+                $('#sms').removeClass('show')
+
+            }
+            /*
+                发送短信验证码接口
+           */
+            $('#getSms').on('click', function() {
+                    console.log('data')
+                    var self = $(this)
+                    $.ajax('http://xesentrycms.njpeiyou.com/api/smsSender?phone=' + $('#phone').val(), {
+                        success: function(res) {
+                            console.log(self);
+                            if (res.code == '0') {
+                                self.css('display', 'none');
+                                $('#waitForSms').css('display', 'block');
+                                var timeout = 60;
+                                $('#waitForSms').html(timeout + 's后再发送')
+                                var interval = setInterval(function() {
+                                    if (timeout > 1) {
+                                        timeout--;
+                                        $('#waitForSms').html(timeout + 's后再发送')
+                                    } else {
+                                        timeout = 60;
+                                        clearInterval(interval)
+                                        $('#waitForSms').css('display', 'none')
+                                        self.css('display', 'block');
+                                    }
+
+                                }, 1000)
+                            } else {
+                                // 发送短信错误信息
+                                var msg = res.msg;
+                                alert(msg)
+                            }
+                        }
+                    })
+                })
+                /*
+                     success:0  展示业务接口
+                     success:1  调用phonelogin注册接口
+                */
+            $('.submitBtn').on('click', function() {
+                        if (stuInfo.success == '0') {
+                            // http://localhost:8080/api/get
+                            // get请求之前 先判断学科，有些学科没有服务点
+                            if (classId == '-1') {
+                                //保存接口；去第三页
+                                $.ajax('http://xesentrycms.njpeiyou.com/api/save', {
+                                    type: 'post',
+                                    data: {
+                                        name: decodeURI(stuInfo.name),
+                                        phone: stuInfo.phone,
+                                        stu_number: stuInfo.stu_number,
+                                        new: stuInfo.stuNew,
+                                        gradeId,
+                                        classId,
+                                        agree,
+                                        serviceCenterId,
+                                        invitation_code
+
+                                    },
+                                    success: function(res) {
+                                        $('.page2').css('display', 'none');
+
+
+                                        document.getElementById('root').style = 'transform:translate3d(0px,-' + height + 'px,0px); -webkit-transform:translate3d(0px,-' + height + 'px,0px);-webkit-transition: all 300ms ease 0s;'
+                                        document.getElementById('root').style.transform = 'translate3d(0px,-' + height + 'px,0px)';
+
+                                        document.getElementById('root').style.transition = 'all 300ms ease 0s';
+                                        if (gradeId == '8' || gradeId == "9" || gradeId == "10" || gradeId == "11" || gradeId == "12") {
+                                            $('.page3 img').attr('src', './images/' + 789 + '.jpg')
+                                        } else if (gradeId == '-9' || gradeId == '-8' || gradeId == '-7' || gradeId == '-6' || gradeId == '0') {
+                                            $('.page3 img').attr('src', './images/youxiao.jpg')
+                                        } else {
+                                            $('.page3 img').attr('src', './images/' + gradeId + '.jpg')
+                                        }
+                                    }
+                                })
+
+                            } else {
+                                $('.page2').css('display', 'block');
+                                $.ajax('http://xesentrycms.njpeiyou.com/api/get?classId=' + classId, {
+                                    success: function(res) {
+                                        if (res.code == "0") {
+                                            document.getElementById('root').style = 'transform:translate3d(0px,-' + height + 'px,0px); -webkit-transform:translate3d(0px,-' + height + 'px,0px);-webkit-transition: all 300ms ease 0s;'
+                                            document.getElementById('root').style.transform = 'translate3d(0px,-' + height + 'px,0px)';
+
+                                            document.getElementById('root').style.transition = 'all 300ms ease 0s';
+                                            // 渲染数据,拼写字符串
+                                            var data = res.data;
+                                            serviceCenterId = data.id;
+                                            var htmlString = '';
+                                            var htmlArr = data.map(function(item) {
+                                                var classTimeArr = item.classTime.split('，')
+                                                console.log(classTimeArr)
+                                                var classTimeString = classTimeArr.map(function(classItem) {
+                                                    return ` <li>
+
+                                                        <label class="theme-checkbox-radio">
+                                                        <input type="radio"  name="dd"><span></span> ${classItem}
+                                                        </label>
+
+
+                                                        </li>`
+                                                })
+                                                return `     
+                                            <div class="list-item___1E_bI " id=${item.id}>
+                                              <div class="play___WIhJV">${item.serviceName}-${item.timeFrame}</div>
+                                               <div class="address___1bjnu">
+                                                 <div class="point___pn4N4"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAYCAMAAAAvSTY9AAAAA3NCSVQICAjb4U/gAAAAYFBMVEX////91DrAwMD91Drw0FfAwMD91DrAwMD91DrAwMD91Dr30kbAwMD91DrrzmHAwMD91DrAwMDAwMDAwMD91Dr30kbAwMDAwMD91DrAwMD91DrAwMD91DrAwMD91DrAwMAQ5xZCAAAAIHRSTlMAEREiIiIzM0REVVVVZmZmd3eImaqqqrvMzN3d7u7//6v47I0AAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzbovLKMAAAAFnRFWHRDcmVhdGlvbiBUaW1lADA5LzIxLzE4XvkvxQAAANRJREFUGJVNUe0CgjAIRM0ysw+30nQb9/5vGTC18UPY7TiOSaRRuwAguJaOGOXsnRfc7ZDHnAnthClDE4aj44o5p/GvQoMRUrBDd+8sz1Caap0iM8dGLeApanobuavOkbUURWt98Fm+Fb+0OZFN/0TTWr/mjNIi+b1hq1mzOXRjlW+sV8QG1FJ8uW96jpXOELvwZCDz2tjuwnHInl+95bzxvrfFxhhRPFtWIgrhgGZsRbtf0hOXv0gu61J6MZMUUjGtRrCtimFEFyS/FP/AYkiQx8zxA9XWD2YaT3nxAAAAAElFTkSuQmCC"></div>
+                                                 <div>${item.address}</div>
+                                                </div>
+                                                <!-- 具体时间 -->
+
+                                                <ul class="time-picker">
+
+                                                    ${classTimeString.join('')}
+                                                     
+                                
+                                                    </ul>
+                                                </div>`
+                                            })
+                                            $('.list-container').html(htmlArr.join('') + '<div class="list-item___1E_bI " id=0>没有合适的场地</div>')
+
+
+
+                                        } else {
+                                            var message = res.msg;
+                                            alert(message)
+                                        }
+                                    }
+                                })
+                            }
+
+
+                        } else {
+                            /*
+                             * url: api/phonelogin
+                             *phone   
+                             *code    
+                             *union_id
+                             *grade
+                             *name
+                             */
+                            // http://xesentrycms.njpeiyou.com/api/phonelogin
+                            var phone = $('#phone').val(),
+                                code = $('#smsInput').val(),
+                                name = $('#name').val();
+                            union_id = getCookie('unionId');
+                            if (!phone || !code || !gradeId) {
+                                if (!phone) {
+                                    alert('手机号不能空')
+                                } else if (!code) {
+                                    alert('短信验证码不能空')
+                                } else if (!gradeId) {
+                                    alert('年级不能为空')
+                                }
+                            }
+
+
+                            $.ajax('http://xesentrycms.njpeiyou.com/api/phonelogin', {
+                                type: 'post',
+                                data: {
+                                    name,
+                                    phone,
+                                    code,
+                                    union_id,
+                                    grade: gradeId
+                                },
+                                success: function(res) {
+                                    console.log(res, 'res')
+                                    var stuInfo = res.data;
+                                    // 存cookie
+                                    var name = res.data.name,
+                                        phone = res.data.phone,
+                                        stuNew = res.data.stuNew,
+                                        stu_number = res.data.stu_number,
+                                        union_id = getCookie('unionId');
+
+                                    window.location.replace('http://registerbook.njpeiyou.com/register-book/new-student-service/?name=' + name + '&phone=' + phone + '&stuNew=' + stuNew + '&stu_number=' + stu_number + '&union_id=' + union_id + '&success=0')
+
+
+
+                                    if (classId == '-1') {
+                                        //保存接口；去第三页
+                                        $.ajax('http://xesentrycms.njpeiyou.com/api/save', {
+                                            type: 'post',
+                                            data: {
+                                                name: decodeURI(stuInfo.name),
+                                                phone: stuInfo.phone,
+                                                stu_number: stuInfo.stu_number,
+                                                new: stuInfo.stuNew,
+                                                gradeId,
+                                                classId,
+                                                agree,
+                                                serviceCenterId,
+                                                invitation_code
+
+                                            },
+                                            success: function(res) {
+                                                $('.page2').css('display', 'none');
+
+
+                                                document.getElementById('root').style = 'transform:translate3d(0px,-' + height + 'px,0px); -webkit-transform:translate3d(0px,-' + height + 'px,0px);-webkit-transition: all 300ms ease 0s;'
+                                                document.getElementById('root').style.transform = 'translate3d(0px,-' + height + 'px,0px)';
+
+                                                document.getElementById('root').style.transition = 'all 300ms ease 0s';
+                                                if (gradeId == '8' || gradeId == "9" || gradeId == "10" || gradeId == "11" || gradeId == "12") {
+                                                    $('.page3 img').attr('src', './images/' + 789 + '.jpg')
+                                                } else if (gradeId == '-9' || gradeId == '-8' || gradeId == '-7' || gradeId == '-6' || gradeId == '0') {
+                                                    $('.page3 img').attr('src', './images/youxiao.jpg')
+                                                } else {
+                                                    $('.page3 img').attr('src', './images/' + gradeId + '.jpg')
+                                                }
+                                            }
+                                        })
+
+                                    } else {
+                                        $('.page2').css('display', 'block');
+                                        $.ajax('http://xesentrycms.njpeiyou.com/api/get?classId=' + classId, {
+                                            success: function(res) {
+                                                if (res.code == "0") {
+                                                    document.getElementById('root').style = 'transform:translate3d(0px,-' + height + 'px,0px); -webkit-transform:translate3d(0px,-' + height + 'px,0px);-webkit-transition: all 300ms ease 0s;'
+                                                    document.getElementById('root').style.transform = 'translate3d(0px,-' + height + 'px,0px)';
+
+                                                    document.getElementById('root').style.transition = 'all 300ms ease 0s';
+                                                    // 渲染数据,拼写字符串
+                                                    var data = res.data;
+                                                    serviceCenterId = data.id;
+                                                    var htmlString = '';
+                                                    var htmlArr = data.map(function(item) {
+                                                        var classTimeArr = item.classTime.split('，')
+                                                        console.log(classTimeArr)
+                                                        var classTimeString = classTimeArr.map(function(classItem) {
+                                                            return ` <li>
+
+                                                        <label class="theme-checkbox-radio">
+                                                        <input type="radio"  name="dd"><span></span> ${classItem}
+                                                        </label>
+
+
+                                                        </li>`
+                                                        })
+                                                        return `     
+                                            <div class="list-item___1E_bI " id=${item.id}>
+                                              <div class="play___WIhJV">${item.serviceName}-${item.timeFrame}</div>
+                                               <div class="address___1bjnu">
+                                                 <div class="point___pn4N4"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAYCAMAAAAvSTY9AAAAA3NCSVQICAjb4U/gAAAAYFBMVEX////91DrAwMD91Drw0FfAwMD91DrAwMD91DrAwMD91Dr30kbAwMD91DrrzmHAwMD91DrAwMDAwMDAwMD91Dr30kbAwMDAwMD91DrAwMD91DrAwMD91DrAwMD91DrAwMAQ5xZCAAAAIHRSTlMAEREiIiIzM0REVVVVZmZmd3eImaqqqrvMzN3d7u7//6v47I0AAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzbovLKMAAAAFnRFWHRDcmVhdGlvbiBUaW1lADA5LzIxLzE4XvkvxQAAANRJREFUGJVNUe0CgjAIRM0ysw+30nQb9/5vGTC18UPY7TiOSaRRuwAguJaOGOXsnRfc7ZDHnAnthClDE4aj44o5p/GvQoMRUrBDd+8sz1Caap0iM8dGLeApanobuavOkbUURWt98Fm+Fb+0OZFN/0TTWr/mjNIi+b1hq1mzOXRjlW+sV8QG1FJ8uW96jpXOELvwZCDz2tjuwnHInl+95bzxvrfFxhhRPFtWIgrhgGZsRbtf0hOXv0gu61J6MZMUUjGtRrCtimFEFyS/FP/AYkiQx8zxA9XWD2YaT3nxAAAAAElFTkSuQmCC"></div>
+                                                 <div>${item.address}</div>
+                                                </div>
+                                                <!-- 具体时间 -->
+
+                                                <ul class="time-picker">
+
+                                                    ${classTimeString.join('')}
+                                                     
+                                
+                                                    </ul>
+                                                </div>`
+                                                    })
+                                                    $('.list-container').html(htmlArr.join('') + '<div class="list-item___1E_bI " id=0>没有合适的场地</div>')
+
+
+
+                                                } else {
+                                                    var message = res.msg;
+                                                    alert(message)
+                                                }
+                                            }
+                                        })
+                                    }
+                                }
+
+                            }, )
+
+                        }
+
+
+                    }
+
+                )
+                /*
+                        保存数据接口
+                */
+
+            $('.submit___1tnJ7').on('click', function() {
+
+                console.log(stuInfo, serviceCenterId);
+
+                if (!serviceCenterId) {
+                    alert('请先选择服务点');
+                    return;
+
+                }
+                $.ajax('http://xesentrycms.njpeiyou.com/api/save', {
+
+                    type: 'post',
+                    data: {
+                        name: decodeURI(stuInfo.name),
+                        phone: stuInfo.phone,
+                        stu_number: stuInfo.stu_number,
+                        new: stuInfo.stuNew,
+                        gradeId,
+                        classId,
+                        agree,
+                        serviceCenterId,
+                        invitation_code,
+                        timePoint
+
+
+                    },
+                    success: function() {
+                        $('.success-modal').css('display', 'block');
+                        setTimeout(function() {
+                            $('.success-modal').css('display', 'none');
+                            document.getElementById('root').style = 'transform:translate3d(0px,-' + height * 2 + 'px,0px); -webkit-transform:translate3d(0px,-' + height * 2 + 'px,0px);-webkit-transition: all 300ms ease 0s;'
+                            document.getElementById('root').style.transform = 'translate3d(0px,-' + height * 2 + 'px,0px)';
+                            document.getElementById('root').style.transition = 'all 300ms ease 0s';
+
+                            if (gradeId == '8' || gradeId == "9" || gradeId == "10" || gradeId == "11" || gradeId == "12") {
+                                $('.page3 img').attr('src', './images/' + 789 + '.jpg')
+                            } else if (gradeId == '-9' || gradeId == '-8' || gradeId == '-7' || gradeId == '-6' || gradeId == '0') {
+                                $('.page3 img').attr('src', './images/youxiao.jpg')
+                            } else {
+                                $('.page3 img').attr('src', './images/' + gradeId + '.jpg')
+                            }
+                        }, 2000)
+                    }
+                })
+
+
+
+
+            })
+
+            $('.am-checkbox-wrapper').on('click', function() {
+
+                if ($('.am-checkbox').hasClass('am-checkbox-checked')) {
+                    agree = '0';
+                    $('.am-checkbox').removeClass('am-checkbox-checked')
+                } else {
+                    agree = '1';
+                    $('.am-checkbox').addClass('am-checkbox-checked')
+                }
+                console.log(agree)
+            })
+
+
+
+
+
+
+            /*
+            toList: 错误拦截
+            */
+
+
+
+            // input 失去焦点的时候处理键盘的问题
+
+            $('input').bind('focus', function() {
+                // var top = $('#root').scrollTop();
+                // console.log(top)
+
+                //或者$('#viewport').height($(window).height()+'px');
+            }).bind('blur', function() {
+                // var top = $('#root').scrollTop();
+                // console.log(top, 'top')
+                $('#root').css({
+                    "position": "fixed",
+                    "bottom": "0"
+                })
+
+
+            })
+        </script>
+        <script>
+            $.ajax({
+                type: "get",
+                url: "http://wservice.njpeiyou.com/jsapi?url=" + encodeURIComponent(encodeURIComponent(location.href.split('#')[0])), //替换网址，xxx根据自己jssdk文件位置修改
+                success: function(res) {
+                    var data = res.data;
+                    wx.config({
+                        appId: data.appID, // 必填，公众号的唯一标识
+                        timestamp: data.timestamp, // 必填，生成签名的时间戳
+                        nonceStr: data.nonceStr, // 必填，生成签名的随机串
+                        signature: data.signature, // 必填，签名，见附录1
+                        jsApiList: [
+                            "onMenuShareTimeline", //分享给好友
+                            "onMenuShareAppMessage", //分享到朋友圈
+                            "onMenuShareQQ", //分享到QQ
+                            "onMenuShareWeibo" //分享到微博
+                        ]
+
+                    });
+                }
+            });
+            wx.ready(function() {
+
+                var shareData = {
+                    title: ' 新生预约报名南京学而思',
+                    desc: '点我预约南京学而思新生入学诊断', //这里请特别注意是要去除html
+                    link: 'http://registerbook.njpeiyou.com/register-book/new-student-service',
+                    imgUrl: 'https://njxes.oss-cn-shanghai.aliyuncs.com/entry/nanjingxes.png'
+                };
+                wx.onMenuShareAppMessage(shareData);
+                wx.onMenuShareTimeline(shareData);
+
+            });
+        </script>
+    </body>
+
+
+
+
+</html>

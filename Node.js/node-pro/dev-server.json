@@ -1,0 +1,11 @@
+{
+    "name": "node-project",
+    "script": "ndex.js",
+    "watch": [
+        "conf"
+    ],
+    "env": {
+        "NODE_ENV": "dev"
+    }
+
+}

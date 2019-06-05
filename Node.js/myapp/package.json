@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "check-types": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node index.js"
   },
@@ -13,6 +14,15 @@
     "express": "^4.15.3"
   },
   "devDependencies": {
-    "mysql": "^2.15.0"
+    "@babel/core": "^7.4.0",
+    "@babel/generator": "^7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-typescript": "^7.3.3",
+    "@babel/register": "^7.4.0",
+    "@types/node": "^11.11.7",
+    "mysql": "^2.15.0",
+    "typescript": "^3.3.4000"
   }
 }
