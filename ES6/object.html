@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>es6 对象的拓展</title>
+    </head>
+
+    <body>
+        <script>
+            'user strict';
+            /*
+             * Object.assign(t,s1,s2,s3...)
+             *  注意：（1）如果目标对象与源对象有同名属性，或多个源对象有同名属性，则【后面的属性】【覆盖前面的属性】,即：同名属性的替换。
+             *       （2）只拷贝源对象自身属性值，不拷贝继承属性和不可枚举属性
+             * 实际应用：
+             *  （1）为对象添加属性
+             *  （2）为对象添加方法
+             *  （3）合并多个对象
+             */
+
+            /*
+            var obj = Object.assign({
+                    b: 'c'
+                },
+                Object.defineProperty({}, 'invisible', {
+                    enumerable: true,
+                    value: 'hello'
+                })
+            )
+
+            var sources = {
+                a: '1',
+                b: '2'
+            }
+            const merge = (...sources) => Object.assign({}, ...sources);
+
+
+            let s = {
+                key1: 'skey1',
+                key2: 'skey2',
+                key3: 'skey3'
+            }
+            let {
+                key1,
+                key2
+            } = s
+
+            let obj2 = {
+                    key1,
+                    key2
+                }
+                //写法一 设置了对象解构赋值的默认值
+            function m1({
+                x = 0,
+                y = 0
+            } = {}) {
+                // 类数组转为数组
+                //let args = Array.prototype.slice.call(arguments)
+                // let args = [...arguments]
+                let args = Array.prototype.slice.call(arguments, 1)
+                console.log(args, arguments.length)
+                return [x, y];
+            }
+
+            // 写法二  参数的默认值是一个具有具体属性值的对象 ，在调动过程中，会被覆盖
+            function m2({
+                x,
+                y
+            } = {
+                x: 0,
+                y: 0
+            }) {
+                console.log(arguments)
+                return [x, y];
+            }
+
+            let _m1 = m1({
+                    x: 3
+                }, y = 3) // [3, 0]
+            let _m2 = m2({
+                    x: 3
+                }) // [3, undefined]
+
+            // console.log(_m1, _m2)
+            console.log(m1)
+
+            /*
+             * Array.prototype.slice()  内部实现
+             */
+
+            // Array.prototype.slice = function(start, end) {
+            //     let _start = start || 0;
+            //     let _end = end || this.length;
+            //     let result = [];
+            //     // 关键点： this指向调用的对象，当使用了call之后，可以改变内部this的指向，也就是指向传进来的对象
+            //     for (let i = start; i < end; i++) {
+            //         result.push(this[i])
+            //     }
+            //     return result
+            // }
+
+            // function Timer() {
+            //     this.s1 = 0;
+            //     this.s2 = 0;
+            //     this.t1 = setInterval(() => {
+            //         console.log(this)
+            //         this.s1++
+            //     }, 1000);
+            //     this.t2 = setInterval(function() {
+            //         console.log(this)
+            //         this.s2++
+            //     }, 1000)
+            // }
+
+
+
+            // let _t = new Timer()
+            // setTimeout(() => {
+            //     console.log(_t.s1)
+            //     clearInterval(_t.t1)
+            // }, 3100)
+            // setTimeout(() => {
+            //     console.log(_t.s2)
+            //     clearInterval(_t.t2)
+            // }, 3100)
+
+            /*const pipeline = (...funcs) => {
+                return val => {
+                    console.log(val, 'val')
+                    return funcs.reduce((a, b) => {
+                        console.log(a, b)
+                        console.log('a', 'b')
+                        return b(a)
+                    }, val)
+                }
+            }
+
+
+            const plus1 = a => a + 1;
+            const mult2 = a => a * 2;
+            const addThenMult = pipeline(plus1, mult2);
+            addThenMult(5) // 12
+            */
+
+            // const array1 = [1, 2, 3, 4];
+            // const reducer = (accumulator, currentValue, currentIndex, array) => {
+            //     console.log(accumulator, currentValue, currentIndex, array)
+            //     return accumulator + currentValue
+            // };
+
+            // // 1 + 2 + 3 + 4
+            // console.log(array1.reduce(reducer));
+            // expected output: 10
+
+            // 5 + 1 + 2 + 3 + 4
+            //console.log(array1.reduce(reducer, 5));
+            // expected output: 15
+
+            /*
+             *   尾调用
+             */
+            // function tailFactorial(n, total) {
+            //     if (n === 1) return total;
+            //     return tailFactorial(n - 1, n * total);
+            // }
+            // function factorial(n) {
+            //     return tailFactorial(n, 1);
+            // }
+
+            // console.time('x')
+
+            // 空间复杂度 O(n)
+            // function factorial(n) {
+            //     if (n === 1) return 1
+            //     return n * factorial(n - 1);
+            // }
+
+
+            // 空间复杂度  O(1)
+            // function factorial(n, total) {
+            //     if (n === 1) return total
+            //     return factorial(n - 1, n * total);
+            // }
+            //console.timeEnd('x');
+            // console.log(factorial(5, 1))
+
+
+            // function log2(b) {
+            //     console.log('hello')
+            // }
+
+            // function act(fn) {
+
+            //     function log(a, _a) {
+            //         console.log('hello')
+            //     }
+            //     return log
+
+
+            // }
+            // act()
+
+            // 柯里化函数
+            // function curry(fn) {
+            //     var _fnArgLength = fn.length;
+
+            //     function wrap(...args) {
+            //         var _args = args;
+            //         var _argLength = _args.length;
+            //         // 如果传的是所有参数，直接返回fn调用
+            //         if (_fnArgLength === _argLength) {
+            //             return fn.apply(null, args);
+            //         }
+
+            //         function act(...args) {
+            //             _args = _args.concat(args);
+
+            //             if (_args.length === _fnArgLength) {
+            //                 return fn.apply(null, _args);
+            //             }
+
+            //             return act;
+            //         }
+
+            //         return act;
+            //     }
+
+            //     return wrap;
+            // }
+            //柯里化函数
+            var _fnArgLength, _args, _argLength, fn;
+
+            function curry(_fn) {
+                fn = _fn;
+                _fnArgLength = _fn.length;
+                return wrap
+            }
+
+            function wrap(...args) {
+                _args = args;
+                _argLength = _args.length;
+                // 如果传的是所有参数，直接返回fn调用
+                if (_fnArgLength === _argLength) {
+                    return fn.apply(null, args);
+                }
+
+
+                return act;
+            }
+
+            function act(...args) {
+                _args = _args.concat(args);
+
+                if (_args.length === _fnArgLength) {
+                    return fn.apply(null, _args);
+                }
+
+                return act;
+            }
+            // 尾递归函数
+            function tailFactorial(num, total) {
+                if (num === 1) return total;
+                return tailFactorial(num - 1, num * total);
+            }
+            // 改写
+            var factorial = curry(tailFactorial);
+            //fn-> wrap
+            //fn(5) ->  act
+            //fn(5)(2) ->act(2)
+
+            console.log(factorial(5)(1)) // 120
+                //factorial(10)(1); // 3628800
+
+            //写一个闭包
+            /*
+             *  由于js函数的特殊性，即链式作用域，外部函数没办法直接获取内部函数的作用域
+             *  在这个场景下，如果有一个需求想要获取内部变量可以在内部返回一个函数，这个函数引用你要获取的变量，在外部调用就可以获取到。
+             *  但是闭包也有他弊端：占用内存，因为闭包被返回到外部之后，会在内存中，但是他会用到outer函数中的变量，那么outer也不会被回收，这就导致了占用内存的情况
+             */
+            function outer() {
+                let n = 222;
+                return function inner() {
+                    return n
+                }
+            }
+            var getn = outer()()
+
+            console.log(getn)
+        </script>
+        <script>
+            /*
+             * 知识点总结：
+             * 类数组转为数组的方法：
+             *  ① Array.prototype.call(obj) //es5方法
+             *  ② Array.from(obj)  //es6方法
+             *  ③ [...arguments]
+             */
+        </script>
+    </body>
+
+</html>
