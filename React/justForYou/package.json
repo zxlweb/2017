@@ -38,7 +38,7 @@
         "guid": "0.0.12",
         "html-webpack-plugin": "^2.22.0",
         "md5": "^2.2.1",
-        "mongoose": "^4.6.3",
+        "mongoose": "^5.7.7",
         "open-browser-webpack-plugin": "0.0.2",
         "react": "^15.3.2",
         "react-cropper": "^0.9.4",
